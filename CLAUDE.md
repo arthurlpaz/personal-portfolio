@@ -14,7 +14,7 @@ Portfolio pessoal de Arthur Lincoln da Paz Cristovão — AI/ML Engineer @ NUTES
 ## Arquitetura
 
 ### Componentes principais (src/components/)
-- `NeuralField.tsx` — Canvas Three.js fixo no background. 220 partículas com conexões dinâmicas, reação ao mouse, orbs flutuantes. NÃO modificar sem testar performance.
+- `ParticleField.tsx` — Canvas Three.js fixo no background. 220 partículas com conexões dinâmicas, reação ao mouse, orbs flutuantes. NÃO modificar sem testar performance.
 - `Nav.tsx` — Header glassmorphism com scroll spy e indicador animado (layoutId).
 - `Hero.tsx` — Nome, roles, links sociais, CTA. Dados do perfil GitHub: arthurlpaz.
 - `About.tsx` — Texto sobre + grid de stats + card "open to work".
