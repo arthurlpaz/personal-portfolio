@@ -1,70 +1,86 @@
 # Personal Portfolio — CLAUDE.md
 
-## Projeto
-Portfolio pessoal de Arthur Lincoln da Paz Cristovão — AI/ML Engineer @ NUTES (UEPB/UFCG), Campina Grande, PB.
+## Project
+Personal portfolio for Arthur Lincoln da Paz Cristovão — AI Engineer, Campina Grande, PB.
+
+## Language
+- Code, comments, variable names, commit messages and docs: **English**.
+- User-facing copy rendered on the page: **Portuguese (pt-BR)** — that is the site's audience.
 
 ## Stack
 - React 19 + TypeScript + Vite
 - Three.js + @react-three/fiber + @react-three/drei (3D background)
-- Framer Motion (animações de scroll e transição)
+- Framer Motion (scroll and transition animations)
 - Tailwind CSS + tailwindcss-animate
-- shadcn/ui (componentes em src/components/ui/)
-- Fontes: Space Grotesk (display), Inter (body), JetBrains Mono (mono)
+- shadcn/ui (components under src/components/ui/)
+- Fonts: Bricolage Grotesque (display), Inter (body), JetBrains Mono (mono), Fraunces (serif accent)
 
-## Arquitetura
+## Architecture
 
-### Componentes principais (src/components/)
-- `ParticleField.tsx` — Canvas Three.js fixo no background. 220 partículas com conexões dinâmicas, reação ao mouse, orbs flutuantes. NÃO modificar sem testar performance.
-- `Nav.tsx` — Header glassmorphism com scroll spy e indicador animado (layoutId).
-- `Hero.tsx` — Nome, roles, links sociais, CTA. Dados do perfil GitHub: arthurlpaz.
-- `About.tsx` — Texto sobre + grid de stats + card "open to work".
-- `Expertise.tsx` — 7 domínios técnicos em cards. O último (`llm`, LLMs & Agentes) usa `wide: true` e ocupa a linha inteira para fechar o grid.
-- `Projects.tsx` — 6 projetos com filtro por categoria. Dados hardcoded por agora.
-- `Timeline.tsx` — Trajetória profissional com linha vertical e marcadores.
-- `Contact.tsx` — Links sociais + terminal whoami + footer.
+### Main components (src/components/)
+- `ParticleField.tsx` — Fixed Three.js canvas in the background. 220 particles with dynamic connections, mouse reaction, floating orbs. Lazy-loaded from `App.tsx`. Do NOT modify without testing performance.
+- `AIMotifs.tsx` — Decorative math/AI motifs (formulas, Gaussian curve, scatter, attention matrix) drifting slowly behind the content, with scroll parallax per depth layer.
+- `Nav.tsx` — Glassmorphism header with scroll spy, animated indicator (`layoutId`) and a reading-progress bar.
+- `Hero.tsx` — Animated name, roles, social links, CTAs.
+- `About.tsx` — Bio copy + stats grid.
+- `Expertise.tsx` — 7 technical domains as cards. The first one (`llm`, LLMs & Agentes) uses `wide: true` and spans the full row to lead the grid.
+- `Projects.tsx` — Projects pulled from the public GitHub API (no token), with a featured carousel and category filter.
+- `Timeline.tsx` — Career trajectory with a scroll-linked progress rail.
+- `Contact.tsx` — Social links, whoami terminal with copy-to-clipboard email, footer.
+- `ScrollToTop.tsx` — Back-to-top button, appears past the hero.
 
 ### Design system
-- Cores: void (#060a13), deep (#0a1022), navy (#121d35), steel (#4682B4), azure (#8bb8e0), ghost (#e2e8f0), teal (#2dd4bf)
-- Classes utilitárias: `.glass`, `.glow-border`, `.text-gradient`, `.font-display`, `.font-mono`
-- Padrão: fundo transparente com glassmorphism, sem sombras pesadas
+- Colors: void (#060a13), deep (#0a1022), navy (#121d35), steel (#4682B4), azure (#8bb8e0), ghost (#e2e8f0), teal (#2dd4bf)
+- Utility classes: `.glass`, `.glow-border`, `.text-gradient`, `.lift`, `.name-breathe`, `.font-display`, `.font-mono`, `.font-serif`
+- Pattern: transparent background with glassmorphism, no heavy shadows
 
-### Regra de conteúdo — ordenação por relevância atual
-O perfil é voltado a **IA**. Em toda lista visível (domínios em `Expertise.tsx`,
-badges de skill, stats em `About.tsx`, bullets em `Timeline.tsx`, `focus` no
-`whoami`, keywords de SEO), o item mais em evidência hoje vem primeiro; legado e
-ferramentas de apoio vão para o fim. LLMs e agentes lideram. Ao adicionar
-qualquer entrada, reordene em vez de só concatenar no fim.
+### Content rule — order by current relevance
+The profile is **AI-oriented**. In every visible list (domains in `Expertise.tsx`,
+skill badges, stats in `About.tsx`, bullets in `Timeline.tsx`, `focus` in the
+whoami block, SEO keywords), the most prominent item today comes first; legacy
+and supporting tools go last. LLMs and agents lead. When adding an entry,
+reorder the list instead of appending to the end.
 
-### Regras
-- Todas as animações usam Framer Motion com `useInView({ once: true })`
-- Sections seguem o padrão: número + label mono → heading display → conteúdo
-- Cards usam `glass glow-border rounded-xl` consistentemente
-- Cor primária vem do GitHub profile de Arthur: #4682B4
+### Content rule — no institutions or employer projects
+Do not name institutions (NUTES, UEPB, UFCG) or specific work projects
+(ProtesIA, HUAC, DATASUS, client names). Keep the copy at capability level.
+This applies to `index.html` meta tags too — they are what Google and link
+previews show. Exception: the Projects section lists public GitHub repos by
+their real names.
+
+### Rules
+- Scroll reveals use Framer Motion with `useInView({ once: true })`
+- Sections follow the pattern: number + mono label → display heading → content
+- Cards consistently use `glass glow-border rounded-xl`
+- Primary color comes from Arthur's GitHub profile: #4682B4
 - Mobile-first responsive (sm, md, lg breakpoints)
+- Animate transform/opacity only — never layout properties
+- `prefers-reduced-motion` must be respected: motion stops, content stays visible
+- Interactive elements need a visible `:focus-visible` ring
 
-## Comandos
+## Commands
 ```bash
 pnpm dev        # dev server http://localhost:5173
-pnpm build      # build de produção em dist/
-pnpm preview    # preview do build
-pnpm lint       # lint com oxlint
+pnpm build      # production build in dist/
+pnpm preview    # preview the build
+pnpm lint       # lint with oxlint
 ```
 
-## Links do Arthur
+## Arthur's links
 - GitHub: https://github.com/arthurlpaz
 - LinkedIn: https://www.linkedin.com/in/arthurlincolndapaz/
 - Email: arthurpcristovao@gmail.com
 
-## TODO (próximas iterações)
-- [x] Integrar GitHub API para puxar repos dinamicamente (Projects.tsx, fetch público sem token)
-- [ ] Adicionar seção de publicações acadêmicas
+## TODO (next iterations)
+- [x] Pull repos dynamically from the GitHub API (Projects.tsx, public fetch, no token)
+- [ ] Add an academic publications section
 - [ ] Dark/light mode toggle
-- [ ] Animação de transição entre seções (scroll-snap)
-- [x] SEO meta tags completas + og:image (index.html + public/og-image.png)
-- [x] Performance: lazy load do Three.js canvas (React.lazy + Suspense em App.tsx)
-- [ ] Analytics (Vercel Analytics ou Plausible)
-- [ ] i18n (PT-BR / EN toggle)
+- [ ] Section transition animation (scroll-snap)
+- [x] Full SEO meta tags + og:image (index.html + public/og-image.png)
+- [x] Performance: lazy load the Three.js canvas (React.lazy + Suspense in App.tsx)
+- [x] Analytics (Vercel Analytics + Speed Insights)
+- [ ] i18n (pt-BR / EN toggle)
 
 ## CI/CD
-- Deploy automático na Vercel via `.github/workflows/deploy.yml` (push na main).
-  Requer secrets no repo: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
+- Automatic deploy to Vercel via `.github/workflows/deploy.yml` (push to main).
+  Requires repo secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
