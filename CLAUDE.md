@@ -23,7 +23,7 @@ Personal portfolio for Arthur Lincoln da Paz Cristovão — AI Engineer, Campina
 - `Nav.tsx` — Glassmorphism header with scroll spy, animated indicator (`layoutId`) and a reading-progress bar.
 - `Hero.tsx` — Animated name, roles, social links, CTAs.
 - `About.tsx` — Bio copy + stats grid.
-- `Expertise.tsx` — 7 technical domains as cards. The first one (`llm`, LLMs & Agentes) uses `wide: true` and spans the full row to lead the grid.
+- `Expertise.tsx` — Exactly 6 technical domains as equally sized cards, laid out as two full rows of three. Keep the count at 6 so the last row never has a gap.
 - `Projects.tsx` — Projects pulled from the public GitHub API (no token), with a featured carousel and category filter.
 - `Timeline.tsx` — Career trajectory with a scroll-linked progress rail.
 - `Contact.tsx` — Social links, whoami terminal with copy-to-clipboard email, footer.
@@ -32,6 +32,7 @@ Personal portfolio for Arthur Lincoln da Paz Cristovão — AI Engineer, Campina
 ### Design system
 - Colors: void (#060a13), deep (#0a1022), navy (#121d35), steel (#4682B4), azure (#8bb8e0), ghost (#e2e8f0), teal (#2dd4bf)
 - Utility classes: `.glass`, `.glow-border`, `.text-gradient`, `.lift`, `.name-breathe`, `.font-display`, `.font-mono`, `.font-serif`
+- Expertise grid: `sm:grid-cols-2 lg:grid-cols-3` with 6 cards — full rows at every breakpoint
 - Pattern: transparent background with glassmorphism, no heavy shadows
 
 ### Content rule — order by current relevance
