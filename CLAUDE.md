@@ -13,7 +13,9 @@ Personal portfolio for Arthur Lincoln da Paz Cristovão — AI Engineer, Campina
 - Framer Motion (scroll and transition animations)
 - Tailwind CSS + tailwindcss-animate
 - shadcn/ui (components under src/components/ui/)
-- Fonts: Bricolage Grotesque (display), Inter (body), JetBrains Mono (mono), Fraunces (serif accent)
+- Fonts: Bricolage Grotesque (display), Inter (body), JetBrains Mono (mono) — three families, no more
+  - There is deliberately **no accent serif**. Emphasis inside headings is carried by colour alone (azure / teal), in the same face as the surrounding text. Two characterful families competed with each other; Fraunces and Instrument Serif were both tried and both removed.
+  - Bricolage Grotesque has no true italic, so never apply `italic` to it — the browser would synthesise a slanted fake.
 
 ## Architecture
 
@@ -69,7 +71,7 @@ pnpm lint       # lint with oxlint
 
 ## Arthur's links
 - GitHub: https://github.com/arthurlpaz
-- LinkedIn: https://www.linkedin.com/in/arthurlincolndapaz/
+- LinkedIn: https://www.linkedin.com/in/arthurlpaz/
 - Email: arthurpcristovao@gmail.com
 
 ## TODO (next iterations)

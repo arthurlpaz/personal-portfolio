@@ -1,0 +1,23 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Arthur Lincoln da Paz">
+  <defs>
+    <linearGradient id="arthur-logo-grad" x1="5" y1="4" x2="27" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4682B4"/>
+      <stop offset="1" stop-color="#2dd4bf"/>
+    </linearGradient>
+  </defs>
+  <!-- connections forming an "A" -->
+  <g stroke="url(#arthur-logo-grad)" stroke-width="1.9" stroke-linecap="round">
+    <path d="M16 5.5 L6.5 26.5"/>
+    <path d="M16 5.5 L25.5 26.5"/>
+    <path d="M10.6 18.4 L21.4 18.4"/>
+  </g>
+  <!-- nodes -->
+  <g fill="#060a13" stroke="url(#arthur-logo-grad)" stroke-width="1.9">
+    <circle cx="6.5" cy="26.5" r="2.9"/>
+    <circle cx="25.5" cy="26.5" r="2.9"/>
+    <circle cx="10.6" cy="18.4" r="2.3"/>
+    <circle cx="21.4" cy="18.4" r="2.3"/>
+  </g>
+  <!-- apex node (accent) -->
+  <circle cx="16" cy="5.5" r="3.3" fill="#2dd4bf"/>
+</svg>

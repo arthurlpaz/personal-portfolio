@@ -1,0 +1,207 @@
+/* Fonts are self-hosted via @fontsource-variable (imported in main.tsx) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --void: #060a13;
+  --deep: #0a1022;
+  --navy: #121d35;
+  --steel: #4682B4;
+  --azure: #8bb8e0;
+  --ghost: #e2e8f0;
+  --teal: #2dd4bf;
+  --teal-dim: rgba(45, 212, 191, 0.15);
+  --glow: rgba(70, 130, 180, 0.4);
+
+  /* shadcn/ui semantic tokens mapped onto the design-system palette (HSL channels) */
+  --background: 222 52% 5%;        /* void  */
+  --foreground: 214 32% 91%;       /* ghost */
+  --card: 225 55% 9%;              /* deep  */
+  --card-foreground: 214 32% 91%;
+  --popover: 221 49% 14%;          /* navy  */
+  --popover-foreground: 214 32% 91%;
+  --primary: 207 44% 49%;          /* steel */
+  --primary-foreground: 214 32% 91%;
+  --secondary: 221 49% 14%;        /* navy  */
+  --secondary-foreground: 214 32% 91%;
+  --muted: 221 49% 14%;
+  --muted-foreground: 214 18% 60%;
+  --accent: 172 66% 50%;           /* teal  */
+  --accent-foreground: 222 52% 5%;
+  --destructive: 0 62% 48%;
+  --destructive-foreground: 214 32% 91%;
+  --border: 213 26% 19%;
+  --input: 213 26% 22%;
+  --ring: 207 44% 49%;             /* steel */
+  --radius: 0.75rem;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--steel) var(--void);
+}
+
+/* Anchors land below the fixed 4rem header instead of under it. */
+section[id],
+main[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* One consistent focus ring for every interactive element. Keyboard only —
+   :focus-visible keeps it off mouse clicks. */
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.5rem;
+  background: var(--navy);
+  color: var(--ghost);
+  font-size: 0.875rem;
+  transform: translateY(-200%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+body {
+  background: var(--void);
+  color: var(--ghost);
+  font-family: 'Inter Variable', 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--steel);
+  color: var(--void);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--steel); border-radius: 3px; }
+
+@layer utilities {
+  .font-display { font-family: 'Bricolage Grotesque Variable', 'Space Grotesk', sans-serif; }
+  .font-mono { font-family: 'JetBrains Mono Variable', 'JetBrains Mono', monospace; }
+  .text-gradient {
+    background: linear-gradient(135deg, var(--steel) 0%, var(--teal) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .glass {
+    background: rgba(10, 16, 34, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(70, 130, 180, 0.12);
+  }
+  .glow-border {
+    border: 1px solid rgba(70, 130, 180, 0.2);
+    box-shadow: 0 0 20px rgba(70, 130, 180, 0.05), inset 0 0 20px rgba(70, 130, 180, 0.02);
+  }
+  .glow-text {
+    text-shadow: 0 0 40px rgba(70, 130, 180, 0.3);
+  }
+  /* Shared lift for interactive surfaces (project/timeline cards). */
+  .lift {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+  }
+  .lift:hover {
+    transform: translateY(-3px);
+    border-color: rgba(45, 212, 191, 0.35);
+    box-shadow: 0 10px 30px -12px rgba(45, 212, 191, 0.25);
+  }
+  .lift:active {
+    transform: translateY(-1px);
+  }
+  /* Variant of `.lift` that borrows the element's own accent (--pc) instead of
+     the shared teal. Must come after `.lift:hover` to win the cascade. Used
+     where each card already carries a per-item colour, so hovering does not
+     flatten six identities into one. */
+  .lift-tinted:hover {
+    border-color: color-mix(in srgb, var(--pc) 45%, transparent);
+    box-shadow: 0 10px 30px -14px color-mix(in srgb, var(--pc) 35%, transparent);
+  }
+}
+
+/* Film grain over the whole background.
+   Not decoration: the radial gradients below are wide, low-contrast ramps on a
+   near-black base, which band into visible concentric steps on 8-bit displays.
+   A little noise dithers those steps away and gives the flat surface some
+   texture. The turbulence is baked into a data URI so it costs one paint and
+   no JavaScript. */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
+/* Breathing gradient on the hero name.
+   Seamless by construction: the gradient tile is twice the box width, starts
+   and ends on the same colour, and the keyframe slides it by exactly one tile
+   (0% -> 200%), so the loop has no seam and no rest point. `linear` timing is
+   deliberate — any easing would decelerate at the edges and read as a pause. */
+@keyframes name-breathe {
+  from { background-position: 0% 0; }
+  to   { background-position: 200% 0; }
+}
+
+.name-breathe {
+  background-image: linear-gradient(
+    90deg,
+    var(--ghost) 0%,
+    var(--ghost) 14%,
+    var(--azure) 30%,
+    var(--ghost) 46%,
+    var(--ghost) 58%,
+    var(--steel) 76%,
+    var(--ghost) 92%,
+    var(--ghost) 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: name-breathe 16s linear infinite;
+}
+
+/* Repainting text every frame is not free; stop once the hero is off screen. */
+.name-breathe.is-paused {
+  animation-play-state: paused;
+}
+
+/* Respect the OS setting: content stays visible, motion stops. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .lift:hover { transform: none; }
+  .name-breathe {
+    animation: none;
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+    color: var(--ghost);
+  }
+}

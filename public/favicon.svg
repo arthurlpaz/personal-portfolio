@@ -1,0 +1,42 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fav" x1="250" y1="780" x2="820" y2="220" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4682B4"/>
+      <stop offset="100%" stop-color="#2dd4bf"/>
+    </linearGradient>
+  </defs>
+
+  <!-- "A" — mid-tone steel so it reads on both light and dark tab bars -->
+  <path
+    d="M265 760L512 220L759 760H665L603 625H422L360 760H265ZM457 545H568L512 420L457 545Z"
+    fill="#4682B4"/>
+
+  <!-- "P" -->
+  <path
+    d="M610 260H735C823 260 885 320 885 405C885 490 823 550 735 550H680V760H610V260ZM730 490C779 490 815 455 815 405C815 355 779 320 730 320H680V490H730Z"
+    fill="url(#fav)"/>
+
+  <!-- AI circuit -->
+  <g stroke="url(#fav)" stroke-width="12" stroke-linecap="round">
+    <line x1="305" y1="665" x2="220" y2="665"/>
+    <line x1="320" y1="620" x2="195" y2="620"/>
+    <line x1="338" y1="575" x2="235" y2="575"/>
+  </g>
+  <g fill="url(#fav)">
+    <circle cx="220" cy="665" r="10"/>
+    <circle cx="195" cy="620" r="10"/>
+    <circle cx="235" cy="575" r="10"/>
+  </g>
+
+  <!-- neural nodes -->
+  <g fill="url(#fav)">
+    <circle cx="580" cy="210" r="7"/>
+    <circle cx="615" cy="185" r="7"/>
+    <circle cx="650" cy="210" r="7"/>
+  </g>
+  <g stroke="url(#fav)" stroke-width="4">
+    <line x1="580" y1="210" x2="615" y2="185"/>
+    <line x1="615" y1="185" x2="650" y2="210"/>
+    <line x1="580" y1="210" x2="650" y2="210"/>
+  </g>
+</svg>
