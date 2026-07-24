@@ -85,5 +85,8 @@ pnpm lint       # lint with oxlint
 - [ ] i18n (pt-BR / EN toggle)
 
 ## CI/CD
-- Automatic deploy to Vercel via `.github/workflows/deploy.yml` (push to main).
-  Requires repo secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
+- Deploy is handled by Vercel's native Git integration (repo connected at
+  vercel.com): every push to `main` builds and publishes automatically. No
+  Vercel secrets live in the repo.
+- `.github/workflows/ci.yml` is a lint + build gate on push and PR — it does
+  not deploy.
